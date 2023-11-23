@@ -163,5 +163,38 @@ class UserController extends Controller
         $output = ['status' => $status, 'error' => $error];
         echo json_encode($output);
     }
+    
+    public function deleteUser(Request $request)
+    {
+    $error = array();
+    $status = '';
+
+    $password = $request['password'];
+
+    if ($password == '') {
+        array_push($error, 'Password tidak boleh kosong.');
+    }
+
+    if (count($error) > 0) {
+        $status = 'Failed';
+    } else {
+        $email = session('email');
+        $userModel = UserModel::where(['email' => $email, 'password' => $password])->first();
+
+        if ($userModel) {
+            // Delete user and associated profile
+            $userProfileModel = UserProfileModel::find($userModel->user_profile_id);
+            $userModel->delete();
+            $userProfileModel->delete();
+
+            // Logout the user after deletion
+            $this->logoutUser();
+
+            $status = 'Succeed';
+        } else {
+            $status = 'Failed';
+            array_push($error, 'Password salah, silahkan coba lagi.');
+        }
+    }
+    }
 }
-                   

@@ -20,6 +20,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('user', [UserController::class, 'registerUser']);
     Route::post('user/login', [UserController::class, 'loginUser']);
     Route::post('user/logout', [UserController::class, 'logoutUser']);
+    Route::delete('user/delete', [UserController::class, 'deleteUser']);
+    
 
     Route::get('profile/edit', [PageController::class, 'showEditProfile']);
     Route::get('drink/{id}', [PageController::class, 'showDrink']);

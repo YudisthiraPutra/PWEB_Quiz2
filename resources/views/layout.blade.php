@@ -6,7 +6,7 @@
     {{-- uncommon --}}
     @yield('uncommon_head')
 </head>
-<body class="d-flex flex-column" style="min-height:100vh">
+<body class="d-flex flex-column" style="min-height:100vh; font-family: 'Poppins', sans-serif; background-color: #F3EEEA;">
     <div class="modal" tabindex="-1" id="modal">
         <div class="modal-dialog modal-dialog-scrollable" id="modalDialog" style="height: 40vh">
             <div class="modal-content" id="modalContent">
